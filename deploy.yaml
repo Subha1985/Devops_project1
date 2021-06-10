@@ -3,34 +3,35 @@ kind: Deployment
 metadata:
   name: webapp-deployment
   labels:
-    app: webapp
+    app: http
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: webapp
+      app: http
   template:
     metadata:
       labels:
-        app: webapp
+        app: http
   spec:
     containers:
-    - name: webapp
-      image: subha1985/test  
+    - name: http
+      image: subha1985/test
       ports:
       - containerPort: 80
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service  
+  name: webapp-service
   labels:
-    app: webapp
+    app: http
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    app: webapp
+    app: http
   type: NodePort
+
